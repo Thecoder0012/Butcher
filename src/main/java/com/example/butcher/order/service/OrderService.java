@@ -14,7 +14,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public List<Order> findAll () {
+    public List<Order> fetchAll() {
         return orderRepository.findAll();
     }
 
@@ -23,12 +23,12 @@ public class OrderService {
 
     }
 
-    public Order delete (Long id){
+    public Order delete(Long id){
         orderRepository.deleteById(id);
         return null;
     }
 
-    public Order update (Order order, Long id){
+    public Order update(Order order, Long id){
         Order existingOrder = orderRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Order not found: " + id));
         existingOrder.setCustomerName(order.getCustomerName());

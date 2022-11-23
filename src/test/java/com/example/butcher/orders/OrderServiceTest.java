@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -74,6 +75,22 @@ public class OrderServiceTest {
 
 
 
+    }
+
+
+    @Test
+    public void deleteProduct(){
+        // Arrange
+        Order order = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
+        order.setId(1L);
+
+        // act
+        orderService.delete(order.getId());
+        verify(orderRepository).deleteById(order.getId());
+        boolean condition = order.getId() == 1;
+
+        // assert
+        assertTrue(condition);
     }
 
 }
