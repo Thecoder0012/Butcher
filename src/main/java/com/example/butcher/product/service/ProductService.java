@@ -1,6 +1,6 @@
 package com.example.butcher.product.service;
 
-import com.example.butcher.product.Product;
+import com.example.butcher.product.model.Product;
 import com.example.butcher.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

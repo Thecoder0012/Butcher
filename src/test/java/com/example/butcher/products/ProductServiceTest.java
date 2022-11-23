@@ -1,16 +1,13 @@
 package com.example.butcher.products;
 
 
-import com.example.butcher.product.Product;
+import com.example.butcher.product.model.Product;
 import com.example.butcher.product.repository.ProductRepository;
 import com.example.butcher.product.service.ProductService;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
@@ -61,6 +58,7 @@ public class ProductServiceTest {
         // assert (is the actual product the one we instantiated in the beginning)
         assertEquals(product,productTest);
     }
+
 
 
 

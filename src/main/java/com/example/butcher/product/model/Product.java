@@ -1,6 +1,6 @@
-package com.example.butcher.product;
+package com.example.butcher.product.model;
 
-import com.example.butcher.order.Order;
+import com.example.butcher.order.model.Order;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
