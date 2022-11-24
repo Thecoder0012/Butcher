@@ -10,7 +10,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,22 +29,6 @@ public class ProductServiceTest {
 
     @InjectMocks
     private ProductService productService;
-
-
-
-    @Test
-    public void sayHiTest(){
-
-
-        when(productRepository.sayHi("hi")).thenReturn("hi again");
-
-        String there = productService.sayHi("hi");
-
-        log.info(there);
-    }
-
-
-
 
 
     @Test
@@ -86,35 +69,8 @@ public class ProductServiceTest {
 
     @Test
     public void updateProduct(){
-        Product product = new Product("Beef",4000,80);
-        product.setId(1L);
-        product.setName("BEEEFF");
-        when(productRepository.save(product)).thenReturn(product);
-        Product updateProduct = productService.save(product);
 
-        verify(productRepository).save(product);
-
-        assertEquals(product,updateProduct);
-
-
-//        Product newProduct = new Product();
-//        newProduct.setId(product.getId());
-//        newProduct.setName("Beeeef");
-//        newProduct.setPrice(5000);
-//        newProduct.setWeight(100);
-//
-//        when(productRepository.save(product)).thenReturn(product);
-//        productService.update(newProduct,product.getId());
-//
-//
-//        verify(productRepository,times(1)).save(newProduct);
-
-//        assertTrue(updatedProduct.getName().equals("Beeeef"));
-//
-    }
-
-    @Test
-    public void updateProductTest() {
+        // Arrange
         Product product = new Product("Beef", 4000, 80);
         product.setId(1L);
 
@@ -124,17 +80,20 @@ public class ProductServiceTest {
         newProduct.setPrice(5000);
         newProduct.setWeight(100);
 
-
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-//        when(productRepository.save(product)).thenReturn(newProduct);
-        Product updatedProduct = productService.update(newProduct,product.getId());
-        log.info(updatedProduct.getName());
+        when(productRepository.save(product)).thenReturn(newProduct);
 
-        verify(productRepository).findById(1L);
-        verify(productRepository).save(product);
+        // act
+        Product updatedProduct = productService.update(newProduct,product.getId());
+
+        verify(productRepository,times(1)).findById(1L);
+        verify(productRepository,times(1)).save(product);
         verifyNoMoreInteractions(productRepository);
 
+        // assert
+        assertTrue(updatedProduct.getPrice() == 5000);
     }
+
 
 
 

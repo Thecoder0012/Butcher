@@ -15,14 +15,16 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 
 public class OrderServiceTest {
+
+
     @Mock
     private OrderRepository orderRepository;
 
@@ -57,20 +59,26 @@ public class OrderServiceTest {
 
     @Test
     public void updateOrder (){
-        Order existingorder = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
-        Order neweorder = new Order("yo", LocalDateTime.now(), new Product("lam",400,300));
 
-        List<Order> orders = orderService.fetchAll();
+        // Arrange
+        Order existingorder = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
         existingorder.setId(1L);
 
-        orders.add(existingorder);
+        Order newOrder = new Order();
+        newOrder.setId(existingorder.getId());
+        newOrder.setCustomerName("Jens");
 
-       // when(orderService.update(orders.get(0).getId())).thenReturn(neweorder);
+        when(orderRepository.findById(1L)).thenReturn(Optional.of(existingorder));
+        when(orderRepository.save(existingorder)).thenReturn(newOrder);
 
-        //assertEquals("yo", neweorder.getCustomerName());
+        // act
+        Order updatedOrder = orderService.update(newOrder,existingorder.getId());
+        verify(orderRepository,times(1)).findById(1L);
+        verify(orderRepository,times(1)).save(existingorder);
+        verifyNoMoreInteractions(orderRepository);
 
-        //assertFalse(orders.size()==0);
-
+        // Assert
+        assertTrue(updatedOrder.getCustomerName().length() == 4);
 
 
 
