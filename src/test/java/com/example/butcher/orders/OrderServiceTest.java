@@ -38,7 +38,7 @@ public class OrderServiceTest {
 
         when(orderRepository.findAll()).thenReturn(orderList);
 
-        boolean isEqualTo = orderService.findAll().size() == 2;
+        boolean isEqualTo = orderService.fetchAll().size() == 2;
         assertTrue(isEqualTo);
 
 
@@ -60,7 +60,7 @@ public class OrderServiceTest {
         Order existingorder = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
         Order neweorder = new Order("yo", LocalDateTime.now(), new Product("lam",400,300));
 
-        List<Order> orders = orderService.findAll();
+        List<Order> orders = orderService.fetchAll();
         existingorder.setId(1L);
 
         orders.add(existingorder);

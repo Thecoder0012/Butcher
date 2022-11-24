@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -31,21 +32,42 @@ public class ProductServiceTest {
     private ProductService productService;
 
 
+
+    @Test
+    public void sayHiTest(){
+
+
+        when(productRepository.sayHi("hi")).thenReturn("hi again");
+
+        String there = productService.sayHi("hi");
+
+        log.info(there);
+    }
+
+
+
+
+
     @Test
     public void fetchAllProductsTest(){
+
+
 
         // arrange, (all requirements such as lists, variables etc).
         List<Product> productList = new ArrayList<>();
         productList.add(new Product("Beef",5000,100));
         productList.add(new Product("Calf",20000,100));
         productList.add(new Product("Chicken",7000,100));
+
         when(productRepository.findAll()).thenReturn(productList);
+//
+        log.info(String.valueOf(productService.fetchAll()));
 
-        // act (operation gets executed)
-       boolean isEqualTo = productService.fetchAll().size() == 3; // This is what we want to test
-
-        // we are asserting that this is true, if our result is what we expected it to be.
-       assertTrue(isEqualTo);
+//        // act (operation gets executed)
+//       boolean isEqualTo = productService.fetchAll().size() == 3; // This is what we want to test
+//
+//        // we are asserting that this is true, if our result is what we expected it to be.
+//       assertTrue(isEqualTo);
     }
 
     @Test
@@ -91,6 +113,29 @@ public class ProductServiceTest {
 //
     }
 
+    @Test
+    public void updateProductTest() {
+        Product product = new Product("Beef", 4000, 80);
+        product.setId(1L);
+
+        Product newProduct = new Product();
+        newProduct.setId(product.getId());
+        newProduct.setName("Beeeef");
+        newProduct.setPrice(5000);
+        newProduct.setWeight(100);
+
+
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+//        when(productRepository.save(product)).thenReturn(newProduct);
+        Product updatedProduct = productService.update(newProduct,product.getId());
+        log.info(updatedProduct.getName());
+
+        verify(productRepository).findById(1L);
+        verify(productRepository).save(product);
+        verifyNoMoreInteractions(productRepository);
+
+    }
+
 
 
     @Test
@@ -107,6 +152,8 @@ public class ProductServiceTest {
         // assert
         assertTrue(condition);
     }
+
+
 
 
 }

@@ -19,6 +19,10 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public String sayHi(String message){
+        return productRepository.sayHi(message);
+    }
+
     public Product save(Product product){
         return productRepository.save(product);
     }
@@ -30,6 +34,7 @@ public class ProductService {
 
     public Product update(Product product,Long id){
         Product existingProduct = productRepository.findById(id).orElse(null);
+        existingProduct.setId(product.getId());
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setWeight(product.getWeight());
