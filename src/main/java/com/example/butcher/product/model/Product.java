@@ -10,19 +10,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class Product {
+
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private double price;
     private double weight;
-    @OneToOne
-    Order order;
+
+//    @OneToOne(mappedBy = "product")
+//    Order order;
 
     public Product(String name, double price, double weight) {
         this.name = name;
         this.price = price;
         this.weight = weight;
-
     }
 }

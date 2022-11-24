@@ -35,8 +35,8 @@ public class OrderServiceTest {
     public void findAllOrdersTest(){
         List<Order> orderList = new ArrayList<>();
 
-        orderList.add(new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100)));
-        orderList.add(new Order("Yo", LocalDateTime.now(), new Product("Chicken",1000,300)));
+        orderList.add(new Order("Mo", LocalDateTime.now(),3, new Product("Beef",5000,100)));
+        orderList.add(new Order("Yo", LocalDateTime.now(),4, new Product("Chicken",1000,300)));
 
         when(orderRepository.findAll()).thenReturn(orderList);
 
@@ -47,21 +47,19 @@ public class OrderServiceTest {
     }
     @Test
     public void saveOrder () {
-        Order order = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
+        Order order = new Order("Mo", LocalDateTime.now(),5, new Product("Beef",5000,100));
         when(orderRepository.save(order)).thenReturn(order);
 
         Order orderTest = orderService.save(order);
 
         assertEquals(order,orderTest);
-
-
     }
 
     @Test
     public void updateOrder (){
 
         // Arrange
-        Order existingorder = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
+        Order existingorder = new Order("Mo", LocalDateTime.now(),3, new Product("Beef",5000,100));
         existingorder.setId(1L);
 
         Order newOrder = new Order();
@@ -89,7 +87,7 @@ public class OrderServiceTest {
     @Test
     public void deleteProduct(){
         // Arrange
-        Order order = new Order("Mo", LocalDateTime.now(), new Product("Beef",5000,100));
+        Order order = new Order("Mo", LocalDateTime.now(), 4,new Product("Beef",5000,100));
         order.setId(1L);
 
         // act

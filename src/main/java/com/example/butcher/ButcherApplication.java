@@ -5,6 +5,7 @@ import com.example.butcher.order.repository.OrderRepository;
 import com.example.butcher.product.model.Product;
 import com.example.butcher.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @SpringBootApplication
 @AllArgsConstructor
+@Slf4j
 public class ButcherApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
@@ -33,10 +35,10 @@ public class ButcherApplication implements CommandLineRunner {
         productRepository.saveAll(productList);
 
         List<Order> ordersList = new ArrayList<>();
-        ordersList.add(new Order("Mo", LocalDateTime.now(), productList.get(0)));
-        ordersList.add(new Order("Jasper", LocalDateTime.now(), productList.get(1)));
-        ordersList.add(new Order("Christian", LocalDateTime.now(), productList.get(2)));
+        ordersList.add(new Order("Mo", LocalDateTime.now(),3, productList.get(0)));
+        ordersList.add(new Order("Jasper", LocalDateTime.now(),4 ,productList.get(1)));
+        ordersList.add(new Order("Christian", LocalDateTime.now(),5, productList.get(2)));
         orderRepository.saveAll(ordersList);
-
+        log.info("Test data added");
     }
 }

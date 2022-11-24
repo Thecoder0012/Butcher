@@ -16,14 +16,17 @@ public class Order {
 
     private Long id;
     private String customerName;
-    private LocalDateTime orderDate;
+    private LocalDateTime pickUpTime;
+    private int quantityOfProducts;
+
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public Order(String customerName, LocalDateTime orderDate, Product product) {
+    public Order(String customerName, LocalDateTime pickUpTime, int quantityOfProducts, Product product) {
         this.customerName = customerName;
-        this.orderDate = orderDate;
+        this.pickUpTime = pickUpTime;
+        this.quantityOfProducts = quantityOfProducts;
         this.product = product;
     }
 
