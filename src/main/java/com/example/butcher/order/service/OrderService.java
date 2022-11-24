@@ -14,7 +14,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public List<Order> fetchAll() {
+    public List<Order> findAll() {
         return orderRepository.findAll();
     }
 

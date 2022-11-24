@@ -43,14 +43,13 @@ public class ProductServiceTest {
         productList.add(new Product("Chicken",7000,100));
 
         when(productRepository.findAll()).thenReturn(productList);
-//
-        log.info(String.valueOf(productService.fetchAll()));
 
-//        // act (operation gets executed)
-//       boolean isEqualTo = productService.fetchAll().size() == 3; // This is what we want to test
-//
-//        // we are asserting that this is true, if our result is what we expected it to be.
-//       assertTrue(isEqualTo);
+
+        // act (operation gets executed)
+       boolean isEqualTo = productService.findAll().size() == 3; // This is what we want to test
+
+        // we are asserting that this is true, if our result is what we expected it to be.
+       assertTrue(isEqualTo);
     }
 
     @Test

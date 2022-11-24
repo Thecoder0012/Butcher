@@ -40,7 +40,7 @@ public class OrderServiceTest {
 
         when(orderRepository.findAll()).thenReturn(orderList);
 
-        boolean isEqualTo = orderService.fetchAll().size() == 2;
+        boolean isEqualTo = orderService.findAll().size() == 2;
         assertTrue(isEqualTo);
 
 
