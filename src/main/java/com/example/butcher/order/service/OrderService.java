@@ -33,7 +33,7 @@ public class OrderService {
                 .orElseThrow(()->new RuntimeException("Order not found: " + id));
         existingOrder.setCustomerName(order.getCustomerName());
         existingOrder.setProduct(order.getProduct());
-        existingOrder.setLocalDateTime(order.getLocalDateTime());
+        existingOrder.setOrderDate(order.getOrderDate());
         return orderRepository.save(existingOrder);
 
     }

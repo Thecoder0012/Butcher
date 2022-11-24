@@ -16,14 +16,14 @@ public class Order {
 
     private Long id;
     private String customerName;
-    private LocalDateTime localDateTime;
+    private LocalDateTime orderDate;
     @OneToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public Order(String customerName, LocalDateTime localDateTime, Product product) {
+    public Order(String customerName, LocalDateTime orderDate, Product product) {
         this.customerName = customerName;
-        this.localDateTime = localDateTime;
+        this.orderDate = orderDate;
         this.product = product;
     }
 
