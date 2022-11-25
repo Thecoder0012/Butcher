@@ -32,10 +32,10 @@ public class OrderService {
         Order existingOrder = orderRepository.findById(id)
                 .orElseThrow(()->new RuntimeException("Order not found: " + id));
         existingOrder.setCustomerName(order.getCustomerName());
+        existingOrder.setQuantityOfProducts(order.getQuantityOfProducts());
         existingOrder.setProduct(order.getProduct());
         existingOrder.setPickUpTime(order.getPickUpTime());
         return orderRepository.save(existingOrder);
-
     }
 
 

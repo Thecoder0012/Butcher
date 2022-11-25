@@ -4,14 +4,11 @@ import com.example.butcher.order.model.Order;
 import com.example.butcher.order.repository.OrderRepository;
 import com.example.butcher.order.service.OrderService;
 import com.example.butcher.product.model.Product;
-import com.example.butcher.product.service.ProductService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

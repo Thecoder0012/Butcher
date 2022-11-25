@@ -76,11 +76,11 @@ public class ProductServiceTest {
         Product newProduct = new Product();
         newProduct.setId(product.getId());
         newProduct.setName("Beeeef");
-        newProduct.setPrice(5000);
-        newProduct.setWeight(100);
+        newProduct.setPrice(5000.0);
+        newProduct.setWeight(100.0);
 
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-        when(productRepository.save(product)).thenReturn(newProduct);
+        when(productRepository.save(product)).thenReturn(product);
 
         // act
         Product updatedProduct = productService.update(newProduct,product.getId());

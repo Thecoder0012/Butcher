@@ -1,8 +1,8 @@
 package com.example.butcher.product.model;
 
 import com.example.butcher.order.model.Order;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,11 +15,12 @@ public class Product {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private double price;
-    private double weight;
+    private Double price;
+    private Double weight;
 
-//    @OneToOne(mappedBy = "product")
-//    Order order;
+    @OneToOne(mappedBy = "product",cascade = CascadeType.ALL)
+    @JsonIgnore
+    Order order;
 
     public Product(String name, double price, double weight) {
         this.name = name;

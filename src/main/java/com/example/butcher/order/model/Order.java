@@ -1,8 +1,8 @@
 package com.example.butcher.order.model;
 
 import com.example.butcher.product.model.Product;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,10 +17,10 @@ public class Order {
     private Long id;
     private String customerName;
     private LocalDateTime pickUpTime;
-    private int quantityOfProducts;
+    private Integer quantityOfProducts;
 
     @OneToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "product_id_fk",referencedColumnName = "id")
     private Product product;
 
     public Order(String customerName, LocalDateTime pickUpTime, int quantityOfProducts, Product product) {
