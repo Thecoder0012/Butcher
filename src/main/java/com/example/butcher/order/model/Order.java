@@ -13,13 +13,12 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-
     private Long id;
     private String customerName;
     private LocalDateTime pickUpTime;
     private Integer quantityOfProducts;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "product_id_fk",referencedColumnName = "id")
     private Product product;
 
