@@ -2,12 +2,9 @@ package com.example.butcher.product.model;
 
 import com.example.butcher.order.model.Order;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,9 +19,9 @@ public class Product {
     private Double price;
     private Double weight;
 
-    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL,orphanRemoval = true)
+    @OneToMany(mappedBy = "product",cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<Order> orderList = new ArrayList<>();
+    private List<Order> orderList;
 
     public Product(String name, double price, double weight) {
         this.name = name;

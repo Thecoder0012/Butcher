@@ -1,7 +1,7 @@
 package com.example.butcher.order.model;
 
 import com.example.butcher.product.model.Product;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -19,7 +19,7 @@ public class Order {
     private Integer quantityOfProducts;
 
     @ManyToOne
-    @JoinColumn(name = "product_id_fk",referencedColumnName = "id")
+    @JoinColumn(name = "product_id_fk",referencedColumnName = "id",nullable = false)
     private Product product;
 
     public Order(String customerName, LocalDateTime pickUpTime, int quantityOfProducts, Product product) {

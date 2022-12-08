@@ -20,7 +20,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public Order save(@RequestBody Order order ){
+    public Order save(@RequestBody Order order){
         return orderService.save(order);
     }
 

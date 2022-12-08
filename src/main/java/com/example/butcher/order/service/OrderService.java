@@ -2,7 +2,6 @@ package com.example.butcher.order.service;
 
 import com.example.butcher.order.model.Order;
 import com.example.butcher.order.repository.OrderRepository;
-import com.example.butcher.product.model.Product;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

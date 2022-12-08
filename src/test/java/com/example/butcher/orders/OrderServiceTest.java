@@ -18,7 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-
 public class OrderServiceTest {
 
 
@@ -39,8 +38,6 @@ public class OrderServiceTest {
 
         boolean isEqualTo = orderService.findAll().size() == 2;
         assertTrue(isEqualTo);
-
-
     }
     @Test
     public void saveOrder () {
