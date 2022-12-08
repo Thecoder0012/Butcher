@@ -29,9 +29,12 @@ public class ButcherApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<Product> productList = new ArrayList<>();
-        productList.add(new Product("Beef",100,200));
-        productList.add(new Product("Calf",150,250));
-        productList.add(new Product("Chicken",130,150));
+        productList.add(new Product("Oksekød",100,200));
+        productList.add(new Product("Kalvekød",150,250));
+        productList.add(new Product("Kylling",130,150));
+        productList.add(new Product("Lammekød",150,200));
+        productList.add(new Product("Gås",189,500));
+        productList.add(new Product("And",135,200));
         productRepository.saveAll(productList);
 
         List<Order> ordersList = new ArrayList<>();
