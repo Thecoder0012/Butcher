@@ -30,7 +30,7 @@ public class ProductService {
 
     public Product update(Product product,Long id){
         Product existingProduct = productRepository.findById(id).orElse(null);
-        existingProduct.setId(product.getId());
+        existingProduct.setId(id);
         existingProduct.setName(product.getName());
         existingProduct.setPrice(product.getPrice());
         existingProduct.setWeight(product.getWeight());
